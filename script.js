@@ -101,36 +101,36 @@ document.getElementById('language-toggle').addEventListener('click', () => {
   lang = lang === 'en' ? 'de' : 'en';
   localStorage.setItem('site-language', lang);
   renderLanguage();
-
-  const tabButtons = document.querySelectorAll('.tab-button');
-  const tabPanels = document.querySelectorAll('.tab-panel');
-
-  function activateTab(tabId, updateHash = true) {
-    tabButtons.forEach((button) => {
-      const active = button.dataset.tab === tabId;
-      button.classList.toggle('active', active);
-      button.setAttribute('aria-selected', String(active));
-    });
-
-    tabPanels.forEach((panel) => {
-      panel.classList.toggle('active', panel.id === tabId);
-    });
-
-    if (updateHash) history.replaceState(null, '', `#${tabId}`);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  tabButtons.forEach((button) => {
-    button.addEventListener('click', () => activateTab(button.dataset.tab));
-  });
-
-  document.querySelectorAll('[data-open-tab]').forEach((button) => {
-    button.addEventListener('click', () => activateTab(button.dataset.openTab));
-  });
-
-  const validTabs = ['about', 'publications', 'projects', 'cv'];
-  const initialTab = window.location.hash.slice(1);
-  if (validTabs.includes(initialTab)) activateTab(initialTab, false);
 });
+
+const tabButtons = document.querySelectorAll('.tab-button');
+const tabPanels = document.querySelectorAll('.tab-panel');
+
+function activateTab(tabId, updateHash = true) {
+  tabButtons.forEach((button) => {
+    const active = button.dataset.tab === tabId;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-selected', String(active));
+  });
+
+  tabPanels.forEach((panel) => {
+    panel.classList.toggle('active', panel.id === tabId);
+  });
+
+  if (updateHash) history.replaceState(null, '', `#${tabId}`);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+tabButtons.forEach((button) => {
+  button.addEventListener('click', () => activateTab(button.dataset.tab));
+});
+
+document.querySelectorAll('[data-open-tab]').forEach((button) => {
+  button.addEventListener('click', () => activateTab(button.dataset.openTab));
+});
+
+const validTabs = ['about', 'publications', 'projects', 'cv'];
+const initialTab = window.location.hash.slice(1);
+if (validTabs.includes(initialTab)) activateTab(initialTab, false);
 
 renderLanguage();
