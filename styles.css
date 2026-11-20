@@ -47,6 +47,17 @@ nav { display: flex; align-items: center; gap: 22px; font-size: 0.92rem; }
 nav a { color: var(--ink); text-decoration: none; }
 nav a:hover { text-decoration: underline; }
 .cv-link { font-weight: 700; }
+.language-toggle {
+  min-width: 40px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #fff;
+  color: var(--ink);
+  font: 700 0.78rem var(--text);
+  cursor: pointer;
+}
+.language-toggle:hover { border-color: var(--ink); }
 
 .intro {
   display: grid;
